@@ -3,3 +3,4 @@ memo_venv
 *.pyc
 __pycache__/
 db-volumes/
+db.sqlite3
