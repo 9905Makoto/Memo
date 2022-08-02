@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Memo
 from django.shortcuts import get_object_or_404
 from .forms import MemoForm
+from django.views.decorators.http import require_POST
 
 # Create your views here.
 def index(request):
@@ -21,3 +22,9 @@ def new_memo(request):
     else:   
         form = MemoForm
     return render(request, 'memo/new_memo.html', {'form': form })
+
+@require_POST #request.method=POSTの時のみ実行される
+def delete_memo(request, memo_id):
+    memo = get_object_or_404(Memo, id=memo_id)
+    memo.delete()
+    return redirect('memo:index')    
