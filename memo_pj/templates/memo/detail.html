@@ -2,7 +2,11 @@
     <a href="{% url 'memo:index' %}">ホームに戻る</a>
   </div>
   
-  <h2>{{ memo.title }}</h2>
-  <div>
-    {{ memo.text | linebreaks | urlize }}
-  </div>
+<h2>{{ memo.title }}</h2>
+<div>
+  {{ memo.text | linebreaks | urlize }}
+</div>
+
+<form method="post" action="{% url 'memo:delete_memo' memo_id=memo.pk %}">{% csrf_token %}
+  <button class="btn" type="submit" onclick='return confirm("本当に削除しますか？");'>削除</button>
+</form>  
