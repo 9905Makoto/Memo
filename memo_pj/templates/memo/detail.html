@@ -1,0 +1,8 @@
+<div>
+    <a href="{% url 'memo:index' %}">ホームに戻る</a>
+  </div>
+  
+  <h2>{{ memo.title }}</h2>
+  <div>
+    {{ memo.text | linebreaks | urlize }}
+  </div>
