@@ -7,6 +7,8 @@
   {{ memo.text | linebreaks | urlize }}
 </div>
 
+<button><a class="btn" href="{% url 'memo:edit_memo' memo_id=memo.pk %}">編集</a></button>
+
 <form method="post" action="{% url 'memo:delete_memo' memo_id=memo.pk %}">{% csrf_token %}
   <button class="btn" type="submit" onclick='return confirm("本当に削除しますか？");'>削除</button>
 </form>  
