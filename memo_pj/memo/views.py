@@ -28,3 +28,8 @@ def delete_memo(request, memo_id):
     memo = get_object_or_404(Memo, id=memo_id)
     memo.delete()
     return redirect('memo:index')    
+
+def edit_memo(request, memo_id):
+    memo = get_object_or_404(Memo, id=memo_id)
+    form = MemoForm
+    return render(request, 'memo/edit_memo.html', {'form': form, 'memo': memo})    
