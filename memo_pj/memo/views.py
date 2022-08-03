@@ -31,5 +31,11 @@ def delete_memo(request, memo_id):
 
 def edit_memo(request, memo_id):
     memo = get_object_or_404(Memo, id=memo_id)
-    form = MemoForm
-    return render(request, 'memo/edit_memo.html', {'form': form, 'memo': memo})    
+    if request.method == "POST":
+        form = MemoForm(request.POST, instance=memo)
+        if form.is_valid():
+            form.save()
+            return redirect('memo:index')
+    else:
+        form = MemoForm(instance=memo)
+    return render(request, 'memo/edit_memo.html', {'form': form, 'memo':memo })
